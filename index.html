@@ -59,7 +59,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[52.16894299005272,5.4571293092318545],[52.17829569429152,5.475897447469561]]);
+        }).fitBounds([[52.16416445466661,5.446618433857959],[52.17819577127964,5.47953716607079]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -648,7 +648,13 @@
                         <td class="visible-with-data" id="huizen" colspan="2"><strong>huizen</strong><br />' + (feature.properties['huizen'] !== null ? '<img src="images/' + String(feature.properties['huizen']).replace(/[\\/:]/g, '_').trim().replace(/'/g, '\'').replace(/"/g, '&quot;') + '">' : '') + '</td>\
                     </tr>\
                     <tr>\
+                        <td class="visible-with-data" id="bomen" colspan="2"><strong>bomen</strong><br />' + (feature.properties['bomen'] !== null ? '<img src="images/' + String(feature.properties['bomen']).replace(/[\\/:]/g, '_').trim().replace(/'/g, '\'').replace(/"/g, '&quot;') + '">' : '') + '</td>\
+                    </tr>\
+                    <tr>\
                         <td class="visible-with-data" id="wijk" colspan="2"><strong>wijk</strong><br />' + (feature.properties['wijk'] !== null ? '<img src="images/' + String(feature.properties['wijk']).replace(/[\\/:]/g, '_').trim().replace(/'/g, '\'').replace(/"/g, '&quot;') + '">' : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td class="visible-with-data" id="toelichting" colspan="2"><strong>toelichting</strong><br />' + (feature.properties['toelichting'] !== null ? autolinker.link(String(feature.properties['toelichting']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
