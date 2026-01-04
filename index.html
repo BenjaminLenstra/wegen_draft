@@ -38,7 +38,7 @@
         <script src="js/leaflet.photon.js"></script>
         <script src="js/leaflet-measure.js"></script>
         <script src="data/Wegen_2.js"></script>
-        <script src="data/Wegbreedte_3.js"></script>
+        <script src="data/Groen_3.js"></script>
         <script src="data/Ontwerp_4.js"></script>
         <script src="data/Animatie_5.js"></script>
         <script>
@@ -59,7 +59,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[52.164216905653774,5.448982323294759],[52.17824467894776,5.476520414200172]]);
+        }).fitBounds([[52.16788778703845,5.455254094339953],[52.17490160244789,5.4690230942429015]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -348,7 +348,7 @@
         });
         bounds_group.addLayer(layer_Wegen_2);
         map.addLayer(layer_Wegen_2);
-        function pop_Wegbreedte_3(feature, layer) {
+        function pop_Groen_3(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -361,7 +361,13 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <td class="visible-with-data" id="categorie wegbreedte CROW" colspan="2"><strong>categorie wegbreedte CROW</strong><br />' + (feature.properties['categorie wegbreedte CROW'] !== null ? autolinker.link(String(feature.properties['categorie wegbreedte CROW']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="onderverdeling" colspan="2"><strong>onderverdeling</strong><br />' + (feature.properties['onderverdeling'] !== null ? autolinker.link(String(feature.properties['onderverdeling']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td class="visible-with-data" id="type" colspan="2"><strong>type</strong><br />' + (feature.properties['type'] !== null ? autolinker.link(String(feature.properties['type']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td class="visible-with-data" id="gebruiksfunctie" colspan="2"><strong>gebruiksfunctie</strong><br />' + (feature.properties['gebruiksfunctie'] !== null ? autolinker.link(String(feature.properties['gebruiksfunctie']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -371,26 +377,11 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Wegbreedte_3_0(feature) {
-            switch(String(feature.properties['categorie wegbreedte CROW'])) {
-                default:
+        function style_Groen_3_0(feature) {
+            switch(String(feature.properties['onderverdeling'])) {
+                case 'Berm':
                     return {
-                pane: 'pane_Wegbreedte_3',
-                opacity: 1,
-                color: 'rgba(247,247,247,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(150,150,150,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '< 4,5 meter':
-                    return {
-                pane: 'pane_Wegbreedte_3',
+                pane: 'pane_Groen_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -399,13 +390,13 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(255,0,25,1.0)',
+                fillColor: 'rgba(218,195,111,1.0)',
                 interactive: true,
             }
                     break;
-                case '4,5 - 5,5 meter':
+                case 'Bloemrijk gras':
                     return {
-                pane: 'pane_Wegbreedte_3',
+                pane: 'pane_Groen_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -414,13 +405,13 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(237,255,0,1.0)',
+                fillColor: 'rgba(100,233,103,1.0)',
                 interactive: true,
             }
                     break;
-                case '> 5,5 meter':
+                case 'Blokhaag':
                     return {
-                pane: 'pane_Wegbreedte_3',
+                pane: 'pane_Groen_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -429,26 +420,161 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(15,255,28,1.0)',
+                fillColor: 'rgba(148,71,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Bodembedekkers':
+                    return {
+                pane: 'pane_Groen_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,122,42,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Bosplantsoen':
+                    return {
+                pane: 'pane_Groen_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(24,120,15,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Fijne sierheester':
+                    return {
+                pane: 'pane_Groen_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(126,82,35,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Gazon':
+                    return {
+                pane: 'pane_Groen_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,255,42,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Hondenuitlaatplaats':
+                    return {
+                pane: 'pane_Groen_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(203,76,18,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Natuurvriendelijke oever':
+                    return {
+                pane: 'pane_Groen_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(185,255,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Schoolplein':
+                    return {
+                pane: 'pane_Groen_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(58,66,209,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Sporthal':
+                    return {
+                pane: 'pane_Groen_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(93,221,255,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Struikrozen':
+                    return {
+                pane: 'pane_Groen_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(232,28,23,1.0)',
                 interactive: true,
             }
                     break;
             }
         }
-        map.createPane('pane_Wegbreedte_3');
-        map.getPane('pane_Wegbreedte_3').style.zIndex = 403;
-        map.getPane('pane_Wegbreedte_3').style['mix-blend-mode'] = 'normal';
-        var layer_Wegbreedte_3 = new L.geoJson(json_Wegbreedte_3, {
+        map.createPane('pane_Groen_3');
+        map.getPane('pane_Groen_3').style.zIndex = 403;
+        map.getPane('pane_Groen_3').style['mix-blend-mode'] = 'normal';
+        var layer_Groen_3 = new L.geoJson(json_Groen_3, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Wegbreedte_3',
-            layerName: 'layer_Wegbreedte_3',
-            pane: 'pane_Wegbreedte_3',
-            onEachFeature: pop_Wegbreedte_3,
-            style: style_Wegbreedte_3_0,
+            dataVar: 'json_Groen_3',
+            layerName: 'layer_Groen_3',
+            pane: 'pane_Groen_3',
+            onEachFeature: pop_Groen_3,
+            style: style_Groen_3_0,
         });
-        bounds_group.addLayer(layer_Wegbreedte_3);
-        map.addLayer(layer_Wegbreedte_3);
+        bounds_group.addLayer(layer_Groen_3);
+        map.addLayer(layer_Groen_3);
         function pop_Ontwerp_4(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -594,7 +720,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(0,255,88,1.0)',
+                fillColor: 'rgba(178,0,255,1.0)',
                 interactive: true,
             }
                     break;
@@ -699,7 +825,7 @@
         var overlaysTree = [
             {label: '<img src="legend/Animatie_5.png" /> Animatie', layer: layer_Animatie_5},
             {label: 'Ontwerp<br /><table><tr><td style="text-align: center;"><img src="legend/Ontwerp_4_Aanlegfietspad0.png" /></td><td>Aanleg fietspad</td></tr><tr><td style="text-align: center;"><img src="legend/Ontwerp_4_Fietsstraatinasfalt1.png" /></td><td>Fietsstraat in asfalt</td></tr><tr><td style="text-align: center;"><img src="legend/Ontwerp_4_Fietsstraatinklinkers2.png" /></td><td>Fietsstraat in klinkers</td></tr><tr><td style="text-align: center;"><img src="legend/Ontwerp_4_Instellenschoolzone3.png" /></td><td>Instellen schoolzone</td></tr><tr><td style="text-align: center;"><img src="legend/Ontwerp_4_Trottoirverwijderen4.png" /></td><td>Trottoir verwijderen</td></tr><tr><td style="text-align: center;"><img src="legend/Ontwerp_4_Verwijderenparkeerstrook5.png" /></td><td>Verwijderen parkeerstrook</td></tr><tr><td style="text-align: center;"><img src="legend/Ontwerp_4_Vervangenverharding6.png" /></td><td>Vervangen verharding</td></tr><tr><td style="text-align: center;"><img src="legend/Ontwerp_4_GeenmaatregelOutofScope7.png" /></td><td>Geen maatregel / Out of Scope</td></tr></table>', layer: layer_Ontwerp_4},
-            {label: 'Wegbreedte<br /><table><tr><td style="text-align: center;"><img src="legend/Wegbreedte_3_Nietgeclassificeerd0.png" /></td><td>Niet geclassificeerd</td></tr><tr><td style="text-align: center;"><img src="legend/Wegbreedte_3_45meter1.png" /></td><td>< 4,5 meter</td></tr><tr><td style="text-align: center;"><img src="legend/Wegbreedte_3_4555meter2.png" /></td><td>4,5 - 5,5 meter</td></tr><tr><td style="text-align: center;"><img src="legend/Wegbreedte_3_55meter3.png" /></td><td>> 5,5 meter</td></tr></table>', layer: layer_Wegbreedte_3},
+            {label: 'Groen<br /><table><tr><td style="text-align: center;"><img src="legend/Groen_3_Berm0.png" /></td><td>Berm</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Bloemrijkgras1.png" /></td><td>Bloemrijk gras</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Blokhaag2.png" /></td><td>Blokhaag</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Bodembedekkers3.png" /></td><td>Bodembedekkers</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Bosplantsoen4.png" /></td><td>Bosplantsoen</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Fijnesierheester5.png" /></td><td>Fijne sierheester</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Gazon6.png" /></td><td>Gazon</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Hondenuitlaatplaats7.png" /></td><td>Hondenuitlaatplaats</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Natuurvriendelijkeoever8.png" /></td><td>Natuurvriendelijke oever</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Schoolplein9.png" /></td><td>Schoolplein</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Sporthal10.png" /></td><td>Sporthal</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Struikrozen11.png" /></td><td>Struikrozen</td></tr></table>', layer: layer_Groen_3},
             {label: 'Wegen<br /><table><tr><td style="text-align: center;"><img src="legend/Wegen_2_Fietspad0.png" /></td><td>Fietspad</td></tr><tr><td style="text-align: center;"><img src="legend/Wegen_2_Parkeerstrook1.png" /></td><td>Parkeerstrook</td></tr><tr><td style="text-align: center;"><img src="legend/Wegen_2_Parkeerterrein2.png" /></td><td>Parkeerterrein</td></tr><tr><td style="text-align: center;"><img src="legend/Wegen_2_Parkeervak3.png" /></td><td>Parkeervak</td></tr><tr><td style="text-align: center;"><img src="legend/Wegen_2_Rijbaan4.png" /></td><td>Rijbaan</td></tr><tr><td style="text-align: center;"><img src="legend/Wegen_2_Verkeersdrempel5.png" /></td><td>Verkeersdrempel</td></tr><tr><td style="text-align: center;"><img src="legend/Wegen_2_Voetgangersgebied6.png" /></td><td>Voetgangersgebied</td></tr><tr><td style="text-align: center;"><img src="legend/Wegen_2_Voetpad7.png" /></td><td>Voetpad</td></tr></table>', layer: layer_Wegen_2},
             {label: "Basemap - CartoDb Positron", layer: layer_BasemapCartoDbPositron_1, radioGroup: 'bm' },
             {label: "Google Satellietbeeld", layer: layer_GoogleSatellietbeeld_0, radioGroup: 'bm' },]
