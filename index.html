@@ -10,6 +10,8 @@
         <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/filter.css">
+<link rel="stylesheet" href="css/nouislider.min.css">
         <link rel="stylesheet" href="css/leaflet.photon.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
         <style>
@@ -37,6 +39,9 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet.photon.js"></script>
         <script src="js/leaflet-measure.js"></script>
+        <script src="js/tailDT.js"></script>
+<script src="js/nouislider.min.js"></script>
+<script src="js/wNumb.js"></script>
         <script src="data/Wegen_2.js"></script>
         <script src="data/Groen_3.js"></script>
         <script src="data/Ontwerp_4.js"></script>
@@ -61,7 +66,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[52.17015633581262,5.453295679979577],[52.173224562777456,5.471945312667036]]);
+        }).fitBounds([[52.16945067012944,5.44494133757216],[52.17558742953438,5.482241428496459]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -668,9 +673,6 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <td class="visible-with-data" id="advies" colspan="2"><strong>advies</strong><br />' + (feature.properties['advies'] !== null ? autolinker.link(String(feature.properties['advies']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <td class="visible-with-data" id="huidig materiaal" colspan="2"><strong>huidig materiaal</strong><br />' + (feature.properties['huidig materiaal'] !== null ? autolinker.link(String(feature.properties['huidig materiaal']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
@@ -1111,6 +1113,225 @@
         });
         lay.addTo(map);
         setBounds();
+        var mapDiv = document.getElementById('map');
+        var row = document.createElement('div');
+        row.className="row";
+        row.id="all";
+        row.style.height = "100%";
+        var col1 = document.createElement('div');
+        col1.className="col9";
+        col1.id = "mapWindow";
+        col1.style.height = "99%";
+        col1.style.width = "80%";
+        col1.style.display = "inline-block";
+        var col2 = document.createElement('div');
+        col2.className="col3";
+        col2.id = "menu";
+        col2.style.display = "inline-block";
+        mapDiv.parentNode.insertBefore(row, mapDiv);
+        document.getElementById("all").appendChild(col1);
+        document.getElementById("all").appendChild(col2);
+        col1.appendChild(mapDiv)
+        var Filters = {"thema": "str","maatregel": "str","gebruiksfunctie": "str"};
+        function filterFunc() {
+          map.eachLayer(function(lyr){
+          if ("options" in lyr && "dataVar" in lyr["options"]){
+            features = this[lyr["options"]["dataVar"]].features.slice(0);
+            try{
+              for (key in Filters){
+                keyS = key.replace(/[^a-zA-Z0-9_]/g, "")
+                if (Filters[key] == "str" || Filters[key] == "bool"){
+                  var selection = [];
+                  var options = document.getElementById("sel_" + keyS).options
+                  for (var i=0; i < options.length; i++) {
+                    if (options[i].selected) selection.push(options[i].value);
+                  }
+                    try{
+                      if (key in features[0].properties){
+                        for (i = features.length - 1;
+                          i >= 0; --i){
+                          if (selection.indexOf(
+                          features[i].properties[key])<0
+                          && selection.length>0) {
+                          features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                  }
+                }
+                if (Filters[key] == "int"){
+                  sliderVals =  document.getElementById(
+                    "div_" + keyS).noUiSlider.get();
+                  try{
+                    if (key in features[0].properties){
+                    for (i = features.length - 1; i >= 0; --i){
+                      if (parseInt(features[i].properties[key])
+                          < sliderVals[0]
+                          || parseInt(features[i].properties[key])
+                          > sliderVals[1]){
+                            features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                    }
+                  }
+                if (Filters[key] == "real"){
+                  sliderVals =  document.getElementById(
+                    "div_" + keyS).noUiSlider.get();
+                  try{
+                    if (key in features[0].properties){
+                    for (i = features.length - 1; i >= 0; --i){
+                      if (features[i].properties[key]
+                          < sliderVals[0]
+                          || features[i].properties[key]
+                          > sliderVals[1]){
+                            features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                    }
+                  }
+                if (Filters[key] == "date"
+                  || Filters[key] == "datetime"
+                  || Filters[key] == "time"){
+                  try{
+                    if (key in features[0].properties){
+                      HTMLkey = key.replace(/[&\/\\#,+()$~%.'":*?<>{} ]/g, '');
+                      startdate = document.getElementById("dat_" +
+                        HTMLkey + "_date1").value.replace(" ", "T");
+                      enddate = document.getElementById("dat_" +
+                        HTMLkey + "_date2").value.replace(" ", "T");
+                      for (i = features.length - 1; i >= 0; --i){
+                        if (features[i].properties[key] < startdate
+                          || features[i].properties[key] > enddate){
+                          features.splice(i,1);
+                        }
+                      }
+                    }
+                  } catch(err){
+                  }
+                }
+              }
+            } catch(err){
+            }
+          this[lyr["options"]["layerName"]].clearLayers();
+          this[lyr["options"]["layerName"]].addData(features);
+          }
+          })
+        }
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
+            var div_thema = document.createElement('div');
+            div_thema.id = "div_thema";
+            div_thema.className= "filterselect";
+            document.getElementById("menu").appendChild(div_thema);
+            sel_thema = document.createElement('select');
+            sel_thema.multiple = true;
+            sel_thema.size = 3;
+            sel_thema.id = "sel_thema";
+            var thema_options_str = "<option value='' unselected></option>";
+            sel_thema.onchange = function(){filterFunc()};
+            thema_options_str  += '<option value="Biodiversiteit">Biodiversiteit</option>';
+            thema_options_str  += '<option value="Verkeer">Verkeer</option>';
+            thema_options_str  += '<option value="Water">Water</option>';
+            sel_thema.innerHTML = thema_options_str;
+            div_thema.appendChild(sel_thema);
+            var lab_thema = document.createElement('div');
+            lab_thema.innerHTML = 'thema';
+            lab_thema.className = 'filterlabel';
+            div_thema.appendChild(lab_thema);
+            var reset_thema = document.createElement('div');
+            reset_thema.innerHTML = 'clear filter';
+            reset_thema.className = 'filterlabel';
+            reset_thema.onclick = function() {
+                var options = document.getElementById("sel_thema").options;
+                for (var i=0; i < options.length; i++) {
+                    options[i].selected = false;
+                }
+                filterFunc();
+            };
+            div_thema.appendChild(reset_thema);
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
+            var div_maatregel = document.createElement('div');
+            div_maatregel.id = "div_maatregel";
+            div_maatregel.className= "filterselect";
+            document.getElementById("menu").appendChild(div_maatregel);
+            sel_maatregel = document.createElement('select');
+            sel_maatregel.multiple = true;
+            sel_maatregel.size = 8;
+            sel_maatregel.id = "sel_maatregel";
+            var maatregel_options_str = "<option value='' unselected></option>";
+            sel_maatregel.onchange = function(){filterFunc()};
+            maatregel_options_str  += '<option value="NULL">NULL</option>';
+            maatregel_options_str  += '<option value="Aanleg fietspad">Aanleg fietspad</option>';
+            maatregel_options_str  += '<option value="Fietsstraat in asfalt">Fietsstraat in asfalt</option>';
+            maatregel_options_str  += '<option value="Fietsstraat in asfalt; rabatstrook in klinkers">Fietsstraat in asfalt; rabatstrook in klinkers</option>';
+            maatregel_options_str  += '<option value="Instellen schoolzone">Instellen schoolzone</option>';
+            maatregel_options_str  += '<option value="Trottoir verwijderen">Trottoir verwijderen</option>';
+            maatregel_options_str  += '<option value="Vervangen verharding">Vervangen verharding</option>';
+            maatregel_options_str  += '<option value="Verwijderen parkeerstrook">Verwijderen parkeerstrook</option>';
+            sel_maatregel.innerHTML = maatregel_options_str;
+            div_maatregel.appendChild(sel_maatregel);
+            var lab_maatregel = document.createElement('div');
+            lab_maatregel.innerHTML = 'maatregel';
+            lab_maatregel.className = 'filterlabel';
+            div_maatregel.appendChild(lab_maatregel);
+            var reset_maatregel = document.createElement('div');
+            reset_maatregel.innerHTML = 'clear filter';
+            reset_maatregel.className = 'filterlabel';
+            reset_maatregel.onclick = function() {
+                var options = document.getElementById("sel_maatregel").options;
+                for (var i=0; i < options.length; i++) {
+                    options[i].selected = false;
+                }
+                filterFunc();
+            };
+            div_maatregel.appendChild(reset_maatregel);
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
+            var div_gebruiksfunctie = document.createElement('div');
+            div_gebruiksfunctie.id = "div_gebruiksfunctie";
+            div_gebruiksfunctie.className= "filterselect";
+            document.getElementById("menu").appendChild(div_gebruiksfunctie);
+            sel_gebruiksfunctie = document.createElement('select');
+            sel_gebruiksfunctie.multiple = true;
+            sel_gebruiksfunctie.size = 10;
+            sel_gebruiksfunctie.id = "sel_gebruiksfunctie";
+            var gebruiksfunctie_options_str = "<option value='' unselected></option>";
+            sel_gebruiksfunctie.onchange = function(){filterFunc()};
+            gebruiksfunctie_options_str  += '<option value="NULL">NULL</option>';
+            gebruiksfunctie_options_str  += '<option value="Beek">Beek</option>';
+            gebruiksfunctie_options_str  += '<option value="Berm">Berm</option>';
+            gebruiksfunctie_options_str  += '<option value="Hondenuitlaatplaats">Hondenuitlaatplaats</option>';
+            gebruiksfunctie_options_str  += '<option value="Natuurvriendelijke oever">Natuurvriendelijke oever</option>';
+            gebruiksfunctie_options_str  += '<option value="Schoolplein">Schoolplein</option>';
+            gebruiksfunctie_options_str  += '<option value="Sloot">Sloot</option>';
+            gebruiksfunctie_options_str  += '<option value="Speelplaats">Speelplaats</option>';
+            gebruiksfunctie_options_str  += '<option value="Sporthal Ridderspoor">Sporthal Ridderspoor</option>';
+            gebruiksfunctie_options_str  += '<option value="Trapveld">Trapveld</option>';
+            gebruiksfunctie_options_str  += '<option value="Vijver">Vijver</option>';
+            gebruiksfunctie_options_str  += '<option value="Vrije Speelruimte">Vrije Speelruimte</option>';
+            sel_gebruiksfunctie.innerHTML = gebruiksfunctie_options_str;
+            div_gebruiksfunctie.appendChild(sel_gebruiksfunctie);
+            var lab_gebruiksfunctie = document.createElement('div');
+            lab_gebruiksfunctie.innerHTML = 'gebruiksfunctie';
+            lab_gebruiksfunctie.className = 'filterlabel';
+            div_gebruiksfunctie.appendChild(lab_gebruiksfunctie);
+            var reset_gebruiksfunctie = document.createElement('div');
+            reset_gebruiksfunctie.innerHTML = 'clear filter';
+            reset_gebruiksfunctie.className = 'filterlabel';
+            reset_gebruiksfunctie.onclick = function() {
+                var options = document.getElementById("sel_gebruiksfunctie").options;
+                for (var i=0; i < options.length; i++) {
+                    options[i].selected = false;
+                }
+                filterFunc();
+            };
+            div_gebruiksfunctie.appendChild(reset_gebruiksfunctie);
         </script>        
     </body>
 </html>
