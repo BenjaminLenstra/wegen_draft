@@ -43,7 +43,7 @@
 <script src="js/nouislider.min.js"></script>
 <script src="js/wNumb.js"></script>
         <script src="data/Wegen_2.js"></script>
-        <script src="data/Groen_3.js"></script>
+        <script src="data/Gebruiksfunctie_3.js"></script>
         <script src="data/Ontwerp_4.js"></script>
         <script src="data/Kansen_5.js"></script>
         <script src="data/Gebruiksaanwijzing_6.js"></script>
@@ -66,7 +66,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[52.16987614066824,5.455035424654662],[52.17446761139,5.466330546434414]]);
+        }).fitBounds([[52.167855728411894,5.452301219051747],[52.17818746599308,5.477716725763739]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -136,10 +136,10 @@
         }).addTo(map);
         var measureControl = new L.Control.Measure({
             position: 'topleft',
-            primaryLengthUnit: 'feet',
-            secondaryLengthUnit: 'miles',
-            primaryAreaUnit: 'sqfeet',
-            secondaryAreaUnit: 'sqmiles'
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
         });
         measureControl.addTo(map);
         document.getElementsByClassName('leaflet-control-measure-toggle')[0].innerHTML = '';
@@ -352,7 +352,7 @@
         });
         bounds_group.addLayer(layer_Wegen_2);
         map.addLayer(layer_Wegen_2);
-        function pop_Groen_3(feature, layer) {
+        function pop_Gebruiksfunctie_3(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -384,11 +384,11 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Groen_3_0(feature) {
+        function style_Gebruiksfunctie_3_0(feature) {
             switch(String(feature.properties['onderverdeling'])) {
                 case 'Berm':
                     return {
-                pane: 'pane_Groen_3',
+                pane: 'pane_Gebruiksfunctie_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -403,7 +403,7 @@
                     break;
                 case 'Beek':
                     return {
-                pane: 'pane_Groen_3',
+                pane: 'pane_Gebruiksfunctie_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -418,7 +418,7 @@
                     break;
                 case 'Bibliotheek':
                     return {
-                pane: 'pane_Groen_3',
+                pane: 'pane_Gebruiksfunctie_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -433,7 +433,7 @@
                     break;
                 case 'Bloemrijk gras':
                     return {
-                pane: 'pane_Groen_3',
+                pane: 'pane_Gebruiksfunctie_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -448,7 +448,7 @@
                     break;
                 case 'Blokhaag':
                     return {
-                pane: 'pane_Groen_3',
+                pane: 'pane_Gebruiksfunctie_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -463,7 +463,7 @@
                     break;
                 case 'Bodembedekkers':
                     return {
-                pane: 'pane_Groen_3',
+                pane: 'pane_Gebruiksfunctie_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -478,7 +478,7 @@
                     break;
                 case 'Bosplantsoen':
                     return {
-                pane: 'pane_Groen_3',
+                pane: 'pane_Gebruiksfunctie_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -493,7 +493,7 @@
                     break;
                 case 'Fijne sierheester':
                     return {
-                pane: 'pane_Groen_3',
+                pane: 'pane_Gebruiksfunctie_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -508,7 +508,7 @@
                     break;
                 case 'Gazon':
                     return {
-                pane: 'pane_Groen_3',
+                pane: 'pane_Gebruiksfunctie_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -523,7 +523,7 @@
                     break;
                 case 'Greppel':
                     return {
-                pane: 'pane_Groen_3',
+                pane: 'pane_Gebruiksfunctie_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -538,7 +538,7 @@
                     break;
                 case 'Hondenuitlaatplaats':
                     return {
-                pane: 'pane_Groen_3',
+                pane: 'pane_Gebruiksfunctie_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -553,7 +553,7 @@
                     break;
                 case 'Natuurvriendelijke oever':
                     return {
-                pane: 'pane_Groen_3',
+                pane: 'pane_Gebruiksfunctie_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -566,9 +566,9 @@
                 interactive: true,
             }
                     break;
-                case 'Schoolplein':
+                default:
                     return {
-                pane: 'pane_Groen_3',
+                pane: 'pane_Gebruiksfunctie_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -583,7 +583,7 @@
                     break;
                 case 'Sloot':
                     return {
-                pane: 'pane_Groen_3',
+                pane: 'pane_Gebruiksfunctie_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -596,9 +596,9 @@
                 interactive: true,
             }
                     break;
-                case 'Sporthal':
+                case 'Sporthal Ridderspoor':
                     return {
-                pane: 'pane_Groen_3',
+                pane: 'pane_Gebruiksfunctie_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -613,7 +613,7 @@
                     break;
                 case 'Struikrozen':
                     return {
-                pane: 'pane_Groen_3',
+                pane: 'pane_Gebruiksfunctie_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -628,7 +628,7 @@
                     break;
                 case 'Vijver':
                     return {
-                pane: 'pane_Groen_3',
+                pane: 'pane_Gebruiksfunctie_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -643,7 +643,7 @@
                     break;
                 case 'Waterloop':
                     return {
-                pane: 'pane_Groen_3',
+                pane: 'pane_Gebruiksfunctie_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -658,20 +658,20 @@
                     break;
             }
         }
-        map.createPane('pane_Groen_3');
-        map.getPane('pane_Groen_3').style.zIndex = 403;
-        map.getPane('pane_Groen_3').style['mix-blend-mode'] = 'normal';
-        var layer_Groen_3 = new L.geoJson(json_Groen_3, {
+        map.createPane('pane_Gebruiksfunctie_3');
+        map.getPane('pane_Gebruiksfunctie_3').style.zIndex = 403;
+        map.getPane('pane_Gebruiksfunctie_3').style['mix-blend-mode'] = 'normal';
+        var layer_Gebruiksfunctie_3 = new L.geoJson(json_Gebruiksfunctie_3, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Groen_3',
-            layerName: 'layer_Groen_3',
-            pane: 'pane_Groen_3',
-            onEachFeature: pop_Groen_3,
-            style: style_Groen_3_0,
+            dataVar: 'json_Gebruiksfunctie_3',
+            layerName: 'layer_Gebruiksfunctie_3',
+            pane: 'pane_Gebruiksfunctie_3',
+            onEachFeature: pop_Gebruiksfunctie_3,
+            style: style_Gebruiksfunctie_3_0,
         });
-        bounds_group.addLayer(layer_Groen_3);
-        map.addLayer(layer_Groen_3);
+        bounds_group.addLayer(layer_Gebruiksfunctie_3);
+        map.addLayer(layer_Gebruiksfunctie_3);
         function pop_Ontwerp_4(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -1110,7 +1110,7 @@
             {label: '<img src="legend/Gebruiksaanwijzing_6.png" /> Gebruiksaanwijzing', layer: layer_Gebruiksaanwijzing_6},
             {label: 'Kansen<br /><table><tr><td style="text-align: center;"><img src="legend/Kansen_5_Biodiversiteit0.png" /></td><td>Biodiversiteit</td></tr><tr><td style="text-align: center;"><img src="legend/Kansen_5_Verkeer1.png" /></td><td>Verkeer</td></tr><tr><td style="text-align: center;"><img src="legend/Kansen_5_Water2.png" /></td><td>Water</td></tr></table>', layer: layer_Kansen_5},
             {label: 'Ontwerp<br /><table><tr><td style="text-align: center;"><img src="legend/Ontwerp_4_Aanlegfietspad0.png" /></td><td>Aanleg fietspad</td></tr><tr><td style="text-align: center;"><img src="legend/Ontwerp_4_Fietsstraatinasfalt1.png" /></td><td>Fietsstraat in asfalt</td></tr><tr><td style="text-align: center;"><img src="legend/Ontwerp_4_Fietsstraatinasfaltmiddenstrookmetafwijkendetoplaag2.png" /></td><td>Fietsstraat in asfalt; middenstrook met afwijkende toplaag</td></tr><tr><td style="text-align: center;"><img src="legend/Ontwerp_4_Instellenschoolzone3.png" /></td><td>Instellen schoolzone</td></tr><tr><td style="text-align: center;"><img src="legend/Ontwerp_4_Trottoirverwijderen4.png" /></td><td>Trottoir verwijderen</td></tr><tr><td style="text-align: center;"><img src="legend/Ontwerp_4_Verwijderenparkeerstrook5.png" /></td><td>Verwijderen parkeerstrook</td></tr><tr><td style="text-align: center;"><img src="legend/Ontwerp_4_Vervangenverharding6.png" /></td><td>Vervangen verharding</td></tr><tr><td style="text-align: center;"><img src="legend/Ontwerp_4_GeenmaatregelBuitendescope7.png" /></td><td>Geen maatregel / Buiten de scope</td></tr></table>', layer: layer_Ontwerp_4},
-            {label: 'Groen<br /><table><tr><td style="text-align: center;"><img src="legend/Groen_3_Berm0.png" /></td><td>Berm</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Beek1.png" /></td><td>Beek</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Bibliotheek2.png" /></td><td>Bibliotheek</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Bloemrijkgras3.png" /></td><td>Bloemrijk gras</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Blokhaag4.png" /></td><td>Blokhaag</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Bodembedekkers5.png" /></td><td>Bodembedekkers</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Bosplantsoen6.png" /></td><td>Bosplantsoen</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Fijnesierheester7.png" /></td><td>Fijne sierheester</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Gazon8.png" /></td><td>Gazon</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Greppel9.png" /></td><td>Greppel</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Hondenuitlaatplaats10.png" /></td><td>Hondenuitlaatplaats</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Natuurvriendelijkeoever11.png" /></td><td>Natuurvriendelijke oever</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Schoolplein12.png" /></td><td>Schoolplein</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Sloot13.png" /></td><td>Sloot</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Sporthal14.png" /></td><td>Sporthal</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Struikrozen15.png" /></td><td>Struikrozen</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Vijver16.png" /></td><td>Vijver</td></tr><tr><td style="text-align: center;"><img src="legend/Groen_3_Waterloop17.png" /></td><td>Waterloop</td></tr></table>', layer: layer_Groen_3},
+            {label: 'Gebruiksfunctie<br /><table><tr><td style="text-align: center;"><img src="legend/Gebruiksfunctie_3_Berm0.png" /></td><td>Berm</td></tr><tr><td style="text-align: center;"><img src="legend/Gebruiksfunctie_3_Beek1.png" /></td><td>Beek</td></tr><tr><td style="text-align: center;"><img src="legend/Gebruiksfunctie_3_Bibliotheek2.png" /></td><td>Bibliotheek</td></tr><tr><td style="text-align: center;"><img src="legend/Gebruiksfunctie_3_Bloemrijkgras3.png" /></td><td>Bloemrijk gras</td></tr><tr><td style="text-align: center;"><img src="legend/Gebruiksfunctie_3_Blokhaag4.png" /></td><td>Blokhaag</td></tr><tr><td style="text-align: center;"><img src="legend/Gebruiksfunctie_3_Bodembedekkers5.png" /></td><td>Bodembedekkers</td></tr><tr><td style="text-align: center;"><img src="legend/Gebruiksfunctie_3_Bosplantsoen6.png" /></td><td>Bosplantsoen</td></tr><tr><td style="text-align: center;"><img src="legend/Gebruiksfunctie_3_Fijnesierheester7.png" /></td><td>Fijne sierheester</td></tr><tr><td style="text-align: center;"><img src="legend/Gebruiksfunctie_3_Gazon8.png" /></td><td>Gazon</td></tr><tr><td style="text-align: center;"><img src="legend/Gebruiksfunctie_3_Greppel9.png" /></td><td>Greppel</td></tr><tr><td style="text-align: center;"><img src="legend/Gebruiksfunctie_3_Hondenuitlaatplaats10.png" /></td><td>Hondenuitlaatplaats</td></tr><tr><td style="text-align: center;"><img src="legend/Gebruiksfunctie_3_Natuurvriendelijkeoever11.png" /></td><td>Natuurvriendelijke oever</td></tr><tr><td style="text-align: center;"><img src="legend/Gebruiksfunctie_3_Schoolplein12.png" /></td><td>Schoolplein</td></tr><tr><td style="text-align: center;"><img src="legend/Gebruiksfunctie_3_Sloot13.png" /></td><td>Sloot</td></tr><tr><td style="text-align: center;"><img src="legend/Gebruiksfunctie_3_Sporthal14.png" /></td><td>Sporthal</td></tr><tr><td style="text-align: center;"><img src="legend/Gebruiksfunctie_3_Struikrozen15.png" /></td><td>Struikrozen</td></tr><tr><td style="text-align: center;"><img src="legend/Gebruiksfunctie_3_Vijver16.png" /></td><td>Vijver</td></tr><tr><td style="text-align: center;"><img src="legend/Gebruiksfunctie_3_Waterloop17.png" /></td><td>Waterloop</td></tr></table>', layer: layer_Gebruiksfunctie_3},
             {label: 'Wegen<br /><table><tr><td style="text-align: center;"><img src="legend/Wegen_2_Fietspad0.png" /></td><td>Fietspad</td></tr><tr><td style="text-align: center;"><img src="legend/Wegen_2_Parkeerstrook1.png" /></td><td>Parkeerstrook</td></tr><tr><td style="text-align: center;"><img src="legend/Wegen_2_Parkeerterrein2.png" /></td><td>Parkeerterrein</td></tr><tr><td style="text-align: center;"><img src="legend/Wegen_2_Parkeervak3.png" /></td><td>Parkeervak</td></tr><tr><td style="text-align: center;"><img src="legend/Wegen_2_Rijbaan4.png" /></td><td>Rijbaan</td></tr><tr><td style="text-align: center;"><img src="legend/Wegen_2_Verkeersdrempel5.png" /></td><td>Verkeersdrempel</td></tr><tr><td style="text-align: center;"><img src="legend/Wegen_2_Voetgangersgebied6.png" /></td><td>Voetgangersgebied</td></tr><tr><td style="text-align: center;"><img src="legend/Wegen_2_Voetpad7.png" /></td><td>Voetpad</td></tr></table>', layer: layer_Wegen_2},
             {label: "Basemap - CartoDb Positron", layer: layer_BasemapCartoDbPositron_1, radioGroup: 'bm' },
             {label: "Google Satellietbeeld", layer: layer_GoogleSatellietbeeld_0, radioGroup: 'bm' },]
@@ -1144,7 +1144,7 @@
         document.getElementById("all").appendChild(col1);
         document.getElementById("all").appendChild(col2);
         col1.appendChild(mapDiv)
-        var Filters = {"thema": "str","maatregel": "str","gebruiksfunctie": "str"};
+        var Filters = {"gebruiksfunctie": "str","thema": "str","maatregel": "str"};
         function filterFunc() {
           map.eachLayer(function(lyr){
           if ("options" in lyr && "dataVar" in lyr["options"]){
@@ -1236,6 +1236,47 @@
         }
             document.getElementById("menu").appendChild(
                 document.createElement("div"));
+            var div_gebruiksfunctie = document.createElement('div');
+            div_gebruiksfunctie.id = "div_gebruiksfunctie";
+            div_gebruiksfunctie.className= "filterselect";
+            document.getElementById("menu").appendChild(div_gebruiksfunctie);
+            sel_gebruiksfunctie = document.createElement('select');
+            sel_gebruiksfunctie.multiple = true;
+            sel_gebruiksfunctie.size = 10;
+            sel_gebruiksfunctie.id = "sel_gebruiksfunctie";
+            var gebruiksfunctie_options_str = "<option value='' unselected></option>";
+            sel_gebruiksfunctie.onchange = function(){filterFunc()};
+            gebruiksfunctie_options_str  += '<option value="NULL">NULL</option>';
+            gebruiksfunctie_options_str  += '<option value="Berm">Berm</option>';
+            gebruiksfunctie_options_str  += '<option value="Bibliotheek Hoevelaken">Bibliotheek Hoevelaken</option>';
+            gebruiksfunctie_options_str  += '<option value="Hondenuitlaatplaats">Hondenuitlaatplaats</option>';
+            gebruiksfunctie_options_str  += '<option value="Natuurvriendelijke oever">Natuurvriendelijke oever</option>';
+            gebruiksfunctie_options_str  += '<option value="Schoolplein">Schoolplein</option>';
+            gebruiksfunctie_options_str  += '<option value="Sloot">Sloot</option>';
+            gebruiksfunctie_options_str  += '<option value="Speelplaats">Speelplaats</option>';
+            gebruiksfunctie_options_str  += '<option value="Sporthal ">Sporthal </option>';
+            gebruiksfunctie_options_str  += '<option value="Trapveld">Trapveld</option>';
+            gebruiksfunctie_options_str  += '<option value="Vijver">Vijver</option>';
+            gebruiksfunctie_options_str  += '<option value="Vrije Speelruimte">Vrije Speelruimte</option>';
+            sel_gebruiksfunctie.innerHTML = gebruiksfunctie_options_str;
+            div_gebruiksfunctie.appendChild(sel_gebruiksfunctie);
+            var lab_gebruiksfunctie = document.createElement('div');
+            lab_gebruiksfunctie.innerHTML = 'gebruiksfunctie';
+            lab_gebruiksfunctie.className = 'filterlabel';
+            div_gebruiksfunctie.appendChild(lab_gebruiksfunctie);
+            var reset_gebruiksfunctie = document.createElement('div');
+            reset_gebruiksfunctie.innerHTML = 'clear filter';
+            reset_gebruiksfunctie.className = 'filterlabel';
+            reset_gebruiksfunctie.onclick = function() {
+                var options = document.getElementById("sel_gebruiksfunctie").options;
+                for (var i=0; i < options.length; i++) {
+                    options[i].selected = false;
+                }
+                filterFunc();
+            };
+            div_gebruiksfunctie.appendChild(reset_gebruiksfunctie);
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
             var div_thema = document.createElement('div');
             div_thema.id = "div_thema";
             div_thema.className= "filterselect";
@@ -1303,48 +1344,6 @@
                 filterFunc();
             };
             div_maatregel.appendChild(reset_maatregel);
-            document.getElementById("menu").appendChild(
-                document.createElement("div"));
-            var div_gebruiksfunctie = document.createElement('div');
-            div_gebruiksfunctie.id = "div_gebruiksfunctie";
-            div_gebruiksfunctie.className= "filterselect";
-            document.getElementById("menu").appendChild(div_gebruiksfunctie);
-            sel_gebruiksfunctie = document.createElement('select');
-            sel_gebruiksfunctie.multiple = true;
-            sel_gebruiksfunctie.size = 10;
-            sel_gebruiksfunctie.id = "sel_gebruiksfunctie";
-            var gebruiksfunctie_options_str = "<option value='' unselected></option>";
-            sel_gebruiksfunctie.onchange = function(){filterFunc()};
-            gebruiksfunctie_options_str  += '<option value="NULL">NULL</option>';
-            gebruiksfunctie_options_str  += '<option value="Beek">Beek</option>';
-            gebruiksfunctie_options_str  += '<option value="Berm">Berm</option>';
-            gebruiksfunctie_options_str  += '<option value="Bibliotheek Hoevelaken">Bibliotheek Hoevelaken</option>';
-            gebruiksfunctie_options_str  += '<option value="Hondenuitlaatplaats">Hondenuitlaatplaats</option>';
-            gebruiksfunctie_options_str  += '<option value="Natuurvriendelijke oever">Natuurvriendelijke oever</option>';
-            gebruiksfunctie_options_str  += '<option value="Schoolplein">Schoolplein</option>';
-            gebruiksfunctie_options_str  += '<option value="Sloot">Sloot</option>';
-            gebruiksfunctie_options_str  += '<option value="Speelplaats">Speelplaats</option>';
-            gebruiksfunctie_options_str  += '<option value="Sporthal Ridderspoor">Sporthal Ridderspoor</option>';
-            gebruiksfunctie_options_str  += '<option value="Trapveld">Trapveld</option>';
-            gebruiksfunctie_options_str  += '<option value="Vijver">Vijver</option>';
-            gebruiksfunctie_options_str  += '<option value="Vrije Speelruimte">Vrije Speelruimte</option>';
-            sel_gebruiksfunctie.innerHTML = gebruiksfunctie_options_str;
-            div_gebruiksfunctie.appendChild(sel_gebruiksfunctie);
-            var lab_gebruiksfunctie = document.createElement('div');
-            lab_gebruiksfunctie.innerHTML = 'gebruiksfunctie';
-            lab_gebruiksfunctie.className = 'filterlabel';
-            div_gebruiksfunctie.appendChild(lab_gebruiksfunctie);
-            var reset_gebruiksfunctie = document.createElement('div');
-            reset_gebruiksfunctie.innerHTML = 'clear filter';
-            reset_gebruiksfunctie.className = 'filterlabel';
-            reset_gebruiksfunctie.onclick = function() {
-                var options = document.getElementById("sel_gebruiksfunctie").options;
-                for (var i=0; i < options.length; i++) {
-                    options[i].selected = false;
-                }
-                filterFunc();
-            };
-            div_gebruiksfunctie.appendChild(reset_gebruiksfunctie);
         </script>        
     </body>
 </html>
