@@ -66,7 +66,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[52.16896155726576,5.449297585368857],[52.174139833255545,5.480769019572676]]);
+        }).fitBounds([[52.170874559960545,5.4534390228304614],[52.17605393865939,5.484912283711165]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -186,25 +186,25 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <td class="visible-with-data" id="weggebruiker" colspan="2"><strong>weggebruiker</strong><br />' + (feature.properties['weggebruiker'] !== null ? autolinker.link(String(feature.properties['weggebruiker']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Weggebruiker" colspan="2"><strong>Weggebruiker</strong><br />' + (feature.properties['Weggebruiker'] !== null ? autolinker.link(String(feature.properties['Weggebruiker']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td class="visible-with-data" id="wegfunctie" colspan="2"><strong>wegfunctie</strong><br />' + (feature.properties['wegfunctie'] !== null ? autolinker.link(String(feature.properties['wegfunctie']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Wegfunctie" colspan="2"><strong>Wegfunctie</strong><br />' + (feature.properties['Wegfunctie'] !== null ? autolinker.link(String(feature.properties['Wegfunctie']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td class="visible-with-data" id="wegcategorisering" colspan="2"><strong>wegcategorisering</strong><br />' + (feature.properties['wegcategorisering'] !== null ? autolinker.link(String(feature.properties['wegcategorisering']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Wegcategorisering" colspan="2"><strong>Wegcategorisering</strong><br />' + (feature.properties['Wegcategorisering'] !== null ? autolinker.link(String(feature.properties['Wegcategorisering']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td class="visible-with-data" id="wegtype" colspan="2"><strong>wegtype</strong><br />' + (feature.properties['wegtype'] !== null ? autolinker.link(String(feature.properties['wegtype']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Wegtype" colspan="2"><strong>Wegtype</strong><br />' + (feature.properties['Wegtype'] !== null ? autolinker.link(String(feature.properties['Wegtype']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td class="visible-with-data" id="categorie wegbreedte" colspan="2"><strong>categorie wegbreedte</strong><br />' + (feature.properties['categorie wegbreedte'] !== null ? autolinker.link(String(feature.properties['categorie wegbreedte']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Categorie wegbreedte" colspan="2"><strong>Categorie wegbreedte</strong><br />' + (feature.properties['Categorie wegbreedte'] !== null ? autolinker.link(String(feature.properties['Categorie wegbreedte']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td class="visible-with-data" id="snelheid" colspan="2"><strong>snelheid</strong><br />' + (feature.properties['snelheid'] !== null ? autolinker.link(String(feature.properties['snelheid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Snelheid" colspan="2"><strong>Snelheid</strong><br />' + (feature.properties['Snelheid'] !== null ? autolinker.link(String(feature.properties['Snelheid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td class="visible-with-data" id="jaar van aanleg" colspan="2"><strong>jaar van aanleg</strong><br />' + (feature.properties['jaar van aanleg'] !== null ? autolinker.link(String(feature.properties['jaar van aanleg']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Jaar van aanleg" colspan="2"><strong>Jaar van aanleg</strong><br />' + (feature.properties['Jaar van aanleg'] !== null ? autolinker.link(String(feature.properties['Jaar van aanleg']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -215,7 +215,7 @@
         }
 
         function style_Wegen_2_0(feature) {
-            switch(String(feature.properties['wegfunctie'])) {
+            switch(String(feature.properties['Wegfunctie'])) {
                 case 'Fietspad':
                     return {
                 pane: 'pane_Wegen_2',
@@ -310,7 +310,7 @@
                     return {
                 pane: 'pane_Wegen_2',
                 opacity: 1,
-                color: 'rgba(0,0,0,1.0)',
+                color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
@@ -365,16 +365,16 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <td class="visible-with-data" id="onderverdeling" colspan="2"><strong>onderverdeling</strong><br />' + (feature.properties['onderverdeling'] !== null ? autolinker.link(String(feature.properties['onderverdeling']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Onderverdeling" colspan="2"><strong>Onderverdeling</strong><br />' + (feature.properties['Onderverdeling'] !== null ? autolinker.link(String(feature.properties['Onderverdeling']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td class="visible-with-data" id="type" colspan="2"><strong>type</strong><br />' + (feature.properties['type'] !== null ? autolinker.link(String(feature.properties['type']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Type" colspan="2"><strong>Type</strong><br />' + (feature.properties['Type'] !== null ? autolinker.link(String(feature.properties['Type']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td class="visible-with-data" id="gebruiksfunctie" colspan="2"><strong>gebruiksfunctie</strong><br />' + (feature.properties['gebruiksfunctie'] !== null ? autolinker.link(String(feature.properties['gebruiksfunctie']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Gebruiksfunctie" colspan="2"><strong>Gebruiksfunctie</strong><br />' + (feature.properties['Gebruiksfunctie'] !== null ? autolinker.link(String(feature.properties['Gebruiksfunctie']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td class="visible-with-data" id="type watergang" colspan="2"><strong>type watergang</strong><br />' + (feature.properties['type watergang'] !== null ? autolinker.link(String(feature.properties['type watergang']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Type watergang" colspan="2"><strong>Type watergang</strong><br />' + (feature.properties['Type watergang'] !== null ? autolinker.link(String(feature.properties['Type watergang']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -385,7 +385,7 @@
         }
 
         function style_Gebruiksfunctie_3_0(feature) {
-            switch(String(feature.properties['onderverdeling'])) {
+            switch(String(feature.properties['Onderverdeling'])) {
                 case 'Berm':
                     return {
                 pane: 'pane_Gebruiksfunctie_3',
@@ -709,7 +709,7 @@
                         <td class="visible-with-data" id="Nieuwe situatie" colspan="2"><strong>Nieuwe situatie</strong><br />' + (feature.properties['Nieuwe situatie'] !== null ? '<img src="images/' + String(feature.properties['Nieuwe situatie']).replace(/[\\/:]/g, '_').trim().replace(/'/g, '\'').replace(/"/g, '&quot;') + '">' : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td class="visible-with-data" id="field_15" colspan="2"><strong>field_15</strong><br />' + (feature.properties['field_15'] !== null ? '<img src="images/' + String(feature.properties['field_15']).replace(/[\\/:]/g, '_').trim().replace(/'/g, '\'').replace(/"/g, '&quot;') + '">' : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['field_15'] !== null ? '<img src="images/' + String(feature.properties['field_15']).replace(/[\\/:]/g, '_').trim().replace(/'/g, '\'').replace(/"/g, '&quot;') + '">' : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -1162,7 +1162,7 @@
         document.getElementById("all").appendChild(col1);
         document.getElementById("all").appendChild(col2);
         col1.appendChild(mapDiv)
-        var Filters = {"Maatregel": "str","Thema": "str","gebruiksfunctie": "str"};
+        var Filters = {"Maatregel": "str","Thema": "str","Gebruiksfunctie": "str"};
         function filterFunc() {
           map.eachLayer(function(lyr){
           if ("options" in lyr && "dataVar" in lyr["options"]){
@@ -1324,45 +1324,45 @@
             div_Thema.appendChild(reset_Thema);
             document.getElementById("menu").appendChild(
                 document.createElement("div"));
-            var div_gebruiksfunctie = document.createElement('div');
-            div_gebruiksfunctie.id = "div_gebruiksfunctie";
-            div_gebruiksfunctie.className= "filterselect";
-            document.getElementById("menu").appendChild(div_gebruiksfunctie);
-            sel_gebruiksfunctie = document.createElement('select');
-            sel_gebruiksfunctie.multiple = true;
-            sel_gebruiksfunctie.size = 10;
-            sel_gebruiksfunctie.id = "sel_gebruiksfunctie";
-            var gebruiksfunctie_options_str = "<option value='' unselected></option>";
-            sel_gebruiksfunctie.onchange = function(){filterFunc()};
-            gebruiksfunctie_options_str  += '<option value="NULL">NULL</option>';
-            gebruiksfunctie_options_str  += '<option value="Berm">Berm</option>';
-            gebruiksfunctie_options_str  += '<option value="Bibliotheek ">Bibliotheek </option>';
-            gebruiksfunctie_options_str  += '<option value="Hondenuitlaatplaats">Hondenuitlaatplaats</option>';
-            gebruiksfunctie_options_str  += '<option value="Natuurvriendelijke oever">Natuurvriendelijke oever</option>';
-            gebruiksfunctie_options_str  += '<option value="Schoolplein">Schoolplein</option>';
-            gebruiksfunctie_options_str  += '<option value="Sloot">Sloot</option>';
-            gebruiksfunctie_options_str  += '<option value="Speelplaats">Speelplaats</option>';
-            gebruiksfunctie_options_str  += '<option value="Sporthal ">Sporthal </option>';
-            gebruiksfunctie_options_str  += '<option value="Trapveld">Trapveld</option>';
-            gebruiksfunctie_options_str  += '<option value="Vijver">Vijver</option>';
-            gebruiksfunctie_options_str  += '<option value="Vrije Speelruimte">Vrije Speelruimte</option>';
-            sel_gebruiksfunctie.innerHTML = gebruiksfunctie_options_str;
-            div_gebruiksfunctie.appendChild(sel_gebruiksfunctie);
-            var lab_gebruiksfunctie = document.createElement('div');
-            lab_gebruiksfunctie.innerHTML = 'gebruiksfunctie';
-            lab_gebruiksfunctie.className = 'filterlabel';
-            div_gebruiksfunctie.appendChild(lab_gebruiksfunctie);
-            var reset_gebruiksfunctie = document.createElement('div');
-            reset_gebruiksfunctie.innerHTML = 'clear filter';
-            reset_gebruiksfunctie.className = 'filterlabel';
-            reset_gebruiksfunctie.onclick = function() {
-                var options = document.getElementById("sel_gebruiksfunctie").options;
+            var div_Gebruiksfunctie = document.createElement('div');
+            div_Gebruiksfunctie.id = "div_Gebruiksfunctie";
+            div_Gebruiksfunctie.className= "filterselect";
+            document.getElementById("menu").appendChild(div_Gebruiksfunctie);
+            sel_Gebruiksfunctie = document.createElement('select');
+            sel_Gebruiksfunctie.multiple = true;
+            sel_Gebruiksfunctie.size = 10;
+            sel_Gebruiksfunctie.id = "sel_Gebruiksfunctie";
+            var Gebruiksfunctie_options_str = "<option value='' unselected></option>";
+            sel_Gebruiksfunctie.onchange = function(){filterFunc()};
+            Gebruiksfunctie_options_str  += '<option value="NULL">NULL</option>';
+            Gebruiksfunctie_options_str  += '<option value="Berm">Berm</option>';
+            Gebruiksfunctie_options_str  += '<option value="Bibliotheek ">Bibliotheek </option>';
+            Gebruiksfunctie_options_str  += '<option value="Hondenuitlaatplaats">Hondenuitlaatplaats</option>';
+            Gebruiksfunctie_options_str  += '<option value="Natuurvriendelijke oever">Natuurvriendelijke oever</option>';
+            Gebruiksfunctie_options_str  += '<option value="Schoolplein">Schoolplein</option>';
+            Gebruiksfunctie_options_str  += '<option value="Sloot">Sloot</option>';
+            Gebruiksfunctie_options_str  += '<option value="Speelplaats">Speelplaats</option>';
+            Gebruiksfunctie_options_str  += '<option value="Sporthal ">Sporthal </option>';
+            Gebruiksfunctie_options_str  += '<option value="Trapveld">Trapveld</option>';
+            Gebruiksfunctie_options_str  += '<option value="Vijver">Vijver</option>';
+            Gebruiksfunctie_options_str  += '<option value="Vrije Speelruimte">Vrije Speelruimte</option>';
+            sel_Gebruiksfunctie.innerHTML = Gebruiksfunctie_options_str;
+            div_Gebruiksfunctie.appendChild(sel_Gebruiksfunctie);
+            var lab_Gebruiksfunctie = document.createElement('div');
+            lab_Gebruiksfunctie.innerHTML = 'Gebruiksfunctie';
+            lab_Gebruiksfunctie.className = 'filterlabel';
+            div_Gebruiksfunctie.appendChild(lab_Gebruiksfunctie);
+            var reset_Gebruiksfunctie = document.createElement('div');
+            reset_Gebruiksfunctie.innerHTML = 'clear filter';
+            reset_Gebruiksfunctie.className = 'filterlabel';
+            reset_Gebruiksfunctie.onclick = function() {
+                var options = document.getElementById("sel_Gebruiksfunctie").options;
                 for (var i=0; i < options.length; i++) {
                     options[i].selected = false;
                 }
                 filterFunc();
             };
-            div_gebruiksfunctie.appendChild(reset_gebruiksfunctie);
+            div_Gebruiksfunctie.appendChild(reset_Gebruiksfunctie);
         </script>        
     </body>
 </html>
