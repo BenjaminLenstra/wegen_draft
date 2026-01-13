@@ -159,7 +159,7 @@
             abstract.show = function () {
                 this._div.classList.remove("abstract");
                 this._div.classList.add("abstractUncollapsed");
-                this._div.innerHTML = 'Leuk dat je de weg hebt gevonden naar mijn stageproduct! Zie voor de gebruiksaanwijzing (en het bijbehorende verslag) het i-icoontje linksbovenin de kaart. Het aan- en uitzetten van de verschillende kaartlagen kan via de knop onder deze tekst. Deze kaart bekijk je het beste op een computer.';
+                this._div.innerHTML = 'Leuk dat je de weg hebt gevonden naar mijn stageproduct! Zie voor de gebruiksaanwijzing (en het bijbehorende verslag) het i-icoontje linksbovenin de kaart. Het aan- en uitzetten van de verschillende kaartlagen kan via de knop onder deze tekst. <br /><br />Deze kaart bekijk je het beste op een computer. In de gebruiksaanwijzing zal een link komen te staan naar een mobiele versie zonder filters.';
         };
         abstract.addTo(map);
         var zoomControl = L.control.zoom({
