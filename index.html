@@ -1180,15 +1180,7 @@
             collapsed: true,
         });
         lay.addTo(map);
-        // Add external link button below the layer control
-
-        var externalLinkButton = L.control.externalLinkButton({
-
-            position: 'topright'
-
-        });
-
-        externalLinkButton.addTo(map);
+        
         // Add external link button below the layer control
         var externalLinkButton = L.control.externalLinkButton({
             position: 'topright'
@@ -1412,6 +1404,14 @@
                 var options = document.getElementById("sel_Gebruiksfunctie").options;
                 for (var i=0; i < options.length; i++) {
                     options[i].selected = false;
+                }
+                filterFunc();
+            };
+            div_Gebruiksfunctie.appendChild(reset_Gebruiksfunctie);
+        </script>        
+    </body>
+</html>
+ions[i].selected = false;
                 }
                 filterFunc();
             };
